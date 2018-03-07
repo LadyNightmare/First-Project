@@ -18,4 +18,4 @@ Viability analysis:
 Requirements:
 
 Initial planification:
-  -Commitment:
+  -Commintment:
