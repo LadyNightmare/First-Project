@@ -36,6 +36,7 @@ Viability analysis:
     Isidro Martín Romero - DEVELOPER  /  MODELER
     Juan Diego Martínez Díaz - TESTER / MODELER
     Jakub Sarmir- PROJECT MANAGER / MODELER
+    Jan Mochnacky - DEVELOPER / MODELER
 
   Schedule:  (Finish)
 
