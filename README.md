@@ -27,7 +27,8 @@ Description: Recollect data of plant growing, soil status and weather events fro
 
 ### Product/Service Marketplace:
   
-    It will be focused to the local farmers that want full control and data of their plants and important     meteorologic events that     can be harmful to their crops. 
+    It will be focused to the local farmers that want full control and data of their plants and important
+    meteorologic events that can be harmful to their crops. 
 
 ### Marketing Strategy:
 
