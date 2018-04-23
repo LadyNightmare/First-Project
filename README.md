@@ -12,8 +12,8 @@ Description: Recollect data of plant growing, soil status and weather events fro
 
 ### Description of Products and Services:
   
-    Products: Our product is an Android and web application with a database to store the data obtained from the sensors 
-    that monitorize the vitamins and health of our users’ plants.
+    Products: Our product is an Android and web application with a database to store the data obtained from the
+    sensors that monitorize the vitamins and health of our users’ plants.
     Services: Full access to a database with information about the treatment of a plant and its impact on the plant’s
     health.
 
