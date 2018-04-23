@@ -21,7 +21,8 @@ Description: Recollect data of plant growing, soil status and weather events fro
 
 ### Technology Considerations: 
   
-    The frontend of our web application is going to be developed with Polymer and CSS, it’s going to be hosted in Firebase, also used       for the database. This can be used for the mobile application.
+    The frontend of our web application is going to be developed with Polymer and CSS, it’s going to be hosted in
+    Firebase, also used for the database. This can be used for the mobile application.
     An embedded system with a couple of sensors is going to be used as the device that collects all the data.
 
 ### Product/Service Marketplace:
