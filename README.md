@@ -62,7 +62,7 @@ Description: Recollect data of plant growing, soil status and weather events fro
     We’re all committed with the project, and whatever happens we’re going to finish it.
    
  ### Diagrams that we need:
-     [X] Use Cases
-     [ ] Domain (Class)
-     [ ] Requirement
-     [ ] Sequences
+     - [X] Use Cases
+     - [ ] Domain (Class)
+     - [X] Requirement
+     - [ ] Sequences
