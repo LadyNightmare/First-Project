@@ -64,6 +64,6 @@ Description: Recollect data of plant growing, soil status and weather events fro
 ### To do
 
 - [X] Use Cases
-- [ ] Domain (Class)
+- [X] Domain (Class)
 - [X] Requirement
 - [ ] Sequences
