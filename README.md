@@ -60,10 +60,3 @@ Description: Recollect data of plant growing, soil status and weather events fro
   Commitment:
   
     We’re all committed with the project, and whatever happens we’re going to finish it.
-   
-### To do
-
-- [X] Use Cases
-- [X] Domain (Class)
-- [X] Requirement
-- [ ] Sequences
