@@ -1,6 +1,4 @@
-# First-Project
-
-This is our first group project.
+# EcoData
 
 Description: Recollect data of plant growing, soil status and weather events from local farmers and growers to build a database.
 
