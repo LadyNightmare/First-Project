@@ -6,10 +6,10 @@ import java.sql.Statement;
 
 
 public class DB{
-	String url = "jdbc:mysql://localhost:3306/plant?useLegacyDatetimeCode=false&serverTimezone=UTC";
-    String user = "root";
-    String password = "";
-    Connection con;
+	private String url = "jdbc:mysql://localhost:3306/plant?useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private String user = "root";
+    private String password = "";
+    private Connection con;
     public DB(){
     	try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
@@ -50,10 +50,25 @@ public class DB{
     	}
     }
     
-    public void addPost(String comment_ID,String comment,String user,String post_ID){
+    public void addPost(String ID,String head,String body,String username, String plant){
     	try{
     		Statement stt = con.createStatement();
-    		stt.execute("INSERT INTO post (Comment_ID, Comment, User, Post_ID) VALUES" + 
+    		String id_user = null;
+    		ResultSet res = this.makeQuery("SELECT * FROM `user` WHERE `user`.`Username` LIKE '" + username + "'");
+    		while(res.next()){
+    			id_user = res.getString("ID");
+    		}
+    		stt.execute("INSERT INTO post (ID, Head, Body, User, Plant) VALUES" + 
+                    "('"+ID+"', '"+head+"', '"+body + "', '"+id_user+"', '"+plant + "')");
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    public void addComment(String comment_ID,String comment,String user,String post_ID){
+    	try{
+    		Statement stt = con.createStatement();
+    		stt.execute("INSERT INTO comment (Comment_ID, Comment, User, Post_ID) VALUES" + 
                     "('"+comment_ID+"', '"+comment+"', '"+user+"', '"+post_ID+"')");
     	}catch(Exception e){
     		e.printStackTrace();
@@ -63,40 +78,41 @@ public class DB{
     public void deleteUser(String username){
     	try{
     		Statement stt = con.createStatement();
-    		stt.execute("DELETE FROM user WHERE Username = "+ username);
+    		String id = null;
+    		ResultSet res = this.makeQuery("SELECT * FROM `user` WHERE `user`.`Username` LIKE '" + username + "'");
+    		while(res.next()){
+    			id = res.getString("ID");
+    		}
+    		stt.execute("DELETE FROM `user` WHERE `user`.`ID` = "+ id);
     	}catch(Exception e){
     		e.printStackTrace();
     	}
     }
     
-    public void deleteRow(String query){
+    public void deletePlant(String plant){
     	try{
     		Statement stt = con.createStatement();
-    		stt.execute(query);
+    		stt.execute("DELETE FROM `plant` WHERE `plant`.`Plant` LIKE '"+ plant + "'");
     	}catch(Exception e){
     		e.printStackTrace();
     	}
     }
 	
-    /*public static void main(String[] args)
-    {
-        String url = "jdbc:mysql://localhost:3306/plant?useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String user = "root";
-        String password = "";
-        try
-        {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            Connection con = DriverManager.getConnection(url, user, password);
-            Statement stt = con.createStatement();
-            ResultSet res = stt.executeQuery("SELECT * FROM user");
-            while(res.next()){
-            	System.out.println(res.getString(1) + " " + res.getString(2));
-            }
-            con.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }*/
+    public void deletePost(String ID){
+    	try{
+    		Statement stt = con.createStatement();
+    		stt.execute("DELETE FROM `post` WHERE `post`.`ID` = "+ ID);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    public void deleteComment(String ID){
+    	try{
+    		Statement stt = con.createStatement();
+    		stt.execute("DELETE FROM `comment` WHERE `comment`.`Comment_ID` = "+ ID);
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
 }
