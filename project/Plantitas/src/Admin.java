@@ -17,7 +17,7 @@ public class Admin extends User {
 		super.database.makeChange("UPDATE `user` SET Admin=0 WHERE Username LIKE '" + username + "'");
 	}
 	public void deleteComment(String comment_ID){
-		super.database.deletePost(comment_ID);
+		super.database.deleteComment(comment_ID);
 	}
 	public void modifyPlant(String plant,String description){
 		if(description.equals("")){
