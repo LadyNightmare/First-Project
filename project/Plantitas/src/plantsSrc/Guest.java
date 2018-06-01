@@ -31,8 +31,8 @@ public class Guest {
 		return admin;
 	}
 
-	public void signUp(String username) {
-		User user = new User(username);
+	public void signUp(String username, String password, String email) {
+		User user = new User(username, password, email);
 	}
 
 }
