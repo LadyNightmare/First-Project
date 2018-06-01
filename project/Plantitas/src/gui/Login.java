@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import plantsSrc.Guest;
+
 public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField userField;
@@ -56,7 +58,9 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int res = 
+				String enteredUser = userField.getText();
+				String enteredPass = passField.getText();
+				int res = Guest.login(enteredUser, enteredPass);
 				if (res == -1) { // user not found
 					JOptionPane.showMessageDialog(null, "Wrong Password / Username");
 				}
