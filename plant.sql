@@ -2,10 +2,10 @@
 -- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2018 a las 09:33:11
--- Versión del servidor: 10.1.32-MariaDB
--- Versión de PHP: 7.2.5
+-- Host: 127.0.0.1
+-- Generation Time: Jun 01, 2018 at 05:10 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `plant`
+-- Database: `plant`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -38,7 +38,7 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `plant`
+-- Table structure for table `plant`
 --
 
 CREATE TABLE `plant` (
@@ -46,10 +46,17 @@ CREATE TABLE `plant` (
   `Description` varchar(2000) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Dumping data for table `plant`
+--
+
+INSERT INTO `plant` (`Plant`, `Description`) VALUES
+('Flor', 'Hola');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `post`
+-- Table structure for table `post`
 --
 
 CREATE TABLE `post` (
@@ -63,7 +70,7 @@ CREATE TABLE `post` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -75,29 +82,37 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Índices para tablas volcadas
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `Username`, `Password`, `Mail`, `Admin`) VALUES
+(1, 'Ambrox', 'Ambrox', 'Ambrox@gmail.com', 0),
+(4, 'Prueba', 'Prueba', 'Prueba@gmail.com', 1);
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`Comment_ID`);
 
 --
--- Indices de la tabla `plant`
+-- Indexes for table `plant`
 --
 ALTER TABLE `plant`
   ADD PRIMARY KEY (`Plant`);
 
 --
--- Indices de la tabla `post`
+-- Indexes for table `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`ID`),
