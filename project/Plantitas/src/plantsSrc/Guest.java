@@ -32,7 +32,7 @@ public class Guest {
 	}
 
 	public void signUp(String username) {
-		User user = new User(username);
+		
 	}
 
 }
