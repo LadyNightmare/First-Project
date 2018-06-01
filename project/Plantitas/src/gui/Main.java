@@ -1,6 +1,5 @@
 package gui;
-
-import java.awt.BorderLayout;
+	
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
@@ -40,41 +39,47 @@ public class Main extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/img/leaf16.png")));
 		setTitle("DataPlant 1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 312, 296);
+		setBounds(100, 100, 444, 261);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnSearchPlant = new JButton("Search plant");
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		btnSearchPlant.setBounds(146, 96, 133, 23);
+		contentPane.add(btnSearchPlant);
+
+		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			}
 		});
-		btnSearchPlant.setBounds(79, 88, 133, 23);
-		contentPane.add(btnSearchPlant);
-		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(79, 122, 133, 23);
+		btnLogin.setBounds(146, 130, 133, 23);
 		contentPane.add(btnLogin);
-		
+
 		JButton btnSign = new JButton("Sign up");
-		btnSign.setBounds(79, 156, 133, 23);
+		btnSign.setBounds(146, 164, 133, 23);
 		contentPane.add(btnSign);
-		
+
 		JLabel lblWelcome = new JLabel("Welcome to the most complete plant database!");
-		lblWelcome.setBounds(37, 11, 234, 14);
+		lblWelcome.setBounds(56, 12, 355, 14);
 		contentPane.add(lblWelcome);
-		
-		JLabel logoImg = new JLabel("New label");
+
+		JLabel logoImg = new JLabel("");
 		logoImg.setIcon(new ImageIcon(Main.class.getResource("/img/leaf32.png")));
-		logoImg.setBounds(129, 36, 35, 39);
+		logoImg.setBounds(196, 44, 35, 39);
 		contentPane.add(logoImg);
 	}
 }

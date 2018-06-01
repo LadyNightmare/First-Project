@@ -10,8 +10,6 @@ public class Admin extends User {
 	
 	public Plant[] searchPlant(String plant){return super.searchPlant(plant);}
 	
-	public void addComment(Comment comment){return super.addComment(comment);}
-	
 	public void opUser(String username){
 		super.database.makeChange("UPDATE `user` SET Admin=1 WHERE Username LIKE '" + username + "'");
 	}
@@ -19,7 +17,7 @@ public class Admin extends User {
 		super.database.makeChange("UPDATE `user` SET Admin=0 WHERE Username LIKE '" + username + "'");
 	}
 	public void deleteComment(String comment_ID){
-		super.database.deleteComment(comment_ID);
+		super.database.deletePost(comment_ID);
 	}
 	public void modifyPlant(String plant,String description){
 		if(description.equals("")){
