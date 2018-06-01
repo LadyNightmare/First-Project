@@ -10,6 +10,8 @@ public class Admin extends User {
 	
 	public Plant[] searchPlant(String plant){return super.searchPlant(plant);}
 	
+	public void addComment(Comment comment){return super.addComment(comment);}
+	
 	public void opUser(String username){
 		super.database.makeChange("UPDATE `user` SET Admin=1 WHERE Username LIKE '" + username + "'");
 	}
