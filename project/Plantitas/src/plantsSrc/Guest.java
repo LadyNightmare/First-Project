@@ -13,12 +13,12 @@ public class Guest {
 	private static final long serialVersionUID = 1L;
 	private static DB database = new DB();
 
-	public List<Plant> searchPlant(String plant) {
-		List<Plant> plantList = new ArrayList<>();
+	public List<Post> searchPlant(String plant) {
+		List<Post> plantList = new ArrayList<>();
 		try {
-			ResultSet res = database.makeQuery("SELECT * FROM plant WHERE plant LIKE '" + plant + "'");
+			ResultSet res = database.makeQuery("SELECT * FROM post WHERE plant LIKE '" + plant + "'");
 			while (res.next()) {
-				plantList.add(new Plant(res.getString(0), res.getString(1)));
+				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
 			}
 		} catch (SQLException e) {
 			return plantList;
