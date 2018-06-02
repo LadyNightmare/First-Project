@@ -14,7 +14,7 @@ public class Admin extends User {
 		super.writePost(post);
 	}
 
-	public Plant[] searchPlant(String plant) {
+	public Post[] searchPlant(Plant plant) {
 		return super.searchPlant(plant);
 	}
 
