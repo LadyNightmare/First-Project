@@ -1,22 +1,22 @@
-package plantsSrc;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import gui.DB;
+
 public class Guest {
 	
 	private static final long serialVersionUID = 1L;
-	private static DB database = new DB();
+	private DB database = new DB();
 
 	public Plant searchPlant(String name) {
 		Plant plant = new Plant(name);
 		return plant;
 	}
 
-	public static int login(String username, String password) {
+	public int login(String username, String password) {
 		// returns -1 if it doesnt exist, 0 if normal user, 1 if admin
 		int admin = 0;
 		try {
@@ -31,8 +31,8 @@ public class Guest {
 		return admin;
 	}
 
-	public void signUp(String username, String password, String email) {
-		User user = new User(username, password, email);
+	public void signUp(String username) {
+		User user = new User(username);
 	}
 
 }

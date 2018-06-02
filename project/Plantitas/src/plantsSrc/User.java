@@ -2,29 +2,42 @@ package plantsSrc;
 
 public class User {
 
-	private String username;
-	private String password;
+    private String username;
+    private String password;
+    private String email;
+    private boolean logged;
+    public static DB database = new DB();
 
-	public User(String username) {
-		this.username = username;
-	}
+    public User(String username, String password, String email) {
 
-	public void logout() {
+        this.username = username;
+        this.password = password;
+        this.email = email;	
+        logged = true;
 
-	}
-
-	public void writePost(Post post) {
-
-	}
-
-	public void addComment(Comment comment) {
-
-	}
-
-	public Post[] searchPlant(Plant plant) {
-		Post[] posts = new Post[50];
-
-		return posts;
+    }
+    
+    public void logout() {
+    	
+    	logged = false;
+    	
+    }
+    
+    public void writePost (Post post) {
+    	
+    	
+    	
+    }
+    
+    public void addComment (Comment comment) {
+    	
+    	database.addComment(comment.)
+    	
+    }
+    
+    public Plant searchPlant(String name) {
+		Plant plant = new Plant(name);
+		return plant;
 	}
 
 }
