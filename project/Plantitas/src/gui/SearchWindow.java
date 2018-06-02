@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SearchWindow extends JFrame {
+	private int from;
 	private JPanel contentPane;
 
 	/**
@@ -21,7 +22,7 @@ public class SearchWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SearchWindow frame = new SearchWindow();
+					SearchWindow frame = new SearchWindow(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +34,7 @@ public class SearchWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SearchWindow() {
+	public SearchWindow(int from) {
 		setTitle("DataPlant 1.0");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SearchWindow.class.getResource("/img/leaf16.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,12 +47,23 @@ public class SearchWindow extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					UserWindow frame = new UserWindow();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception ex) {
-					ex.printStackTrace();
+				if (from == 0) { // if it comes from the guest window
+					try {
+						GuestWindow frame = new GuestWindow();
+						frame.setVisible(true);
+						dispose();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+				if (from == 1) { // if it comes from the logged window
+					try {
+						UserWindow frame = new UserWindow();
+						frame.setVisible(true);
+						dispose();
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			}
 		});

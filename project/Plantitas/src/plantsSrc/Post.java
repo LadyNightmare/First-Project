@@ -1,15 +1,45 @@
 package plantsSrc;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Post {
-	private static String head, body;
-	private static Plant plant;
-	private static LinkedList<Comment> Comments;
+	String ID; 
+	String head;
+	String body;
+	String username;
+	String plant;
+	List<Comment> comments;
 	
-	public Post(String head, String body, Plant plant) {
-		this.head = head;
-		this.body = body;
-		this.plant = plant;
+	public Post(String ID,String head,String body,String username, String plant){
+		this.ID=ID;
+		this.head=head;
+		this.body=body;
+		this.username=username;
+		this.plant=plant;
+		comments = new ArrayList<>();
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public String getHead() {
+		return head;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPlant() {
+		return plant;
 	}
 }

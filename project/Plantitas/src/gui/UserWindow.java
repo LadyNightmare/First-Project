@@ -85,7 +85,7 @@ public class UserWindow extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SearchWindow frame = new SearchWindow();
+					SearchWindow frame = new SearchWindow(1);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {

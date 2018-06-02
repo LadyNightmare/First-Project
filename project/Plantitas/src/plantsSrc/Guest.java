@@ -2,18 +2,28 @@ package plantsSrc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Guest {
-	
+
 	private static final long serialVersionUID = 1L;
 	private static DB database = new DB();
 
-	public Plant searchPlant(String name) {
-		Plant plant = new Plant(name);
-		return plant;
+	public List<Plant> searchPlant(String plant) {
+		List<Plant> plantList = new ArrayList<>();
+		try {
+			ResultSet res = database.makeQuery("SELECT * FROM plant WHERE plant LIKE '" + plant + "'");
+			while (res.next()) {
+				plantList.add(new Plant(res.getString(0), res.getString(1)));
+			}
+		} catch (SQLException e) {
+			return plantList;
+		}
+		return plantList;
 	}
 
 	public static int login(String username, String password) {
@@ -32,7 +42,7 @@ public class Guest {
 	}
 
 	public void signUp(String username, String password, String email) {
-		User user = new User(username, password, email);
+		User user = new User(username, password, email, database);
 	}
 
 }

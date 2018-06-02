@@ -50,7 +50,7 @@ public class GuestWindow extends JFrame {
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SearchWindow frame = new SearchWindow();
+					SearchWindow frame = new SearchWindow(0);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {

@@ -1,15 +1,18 @@
 package plantsSrc;
 public class Plant {
-
-    private String name;
-    protected String description;
-
-    public Plant(String name) {
-        this.name = name;
-    }
-
-    public Plant(String name, String desc) {
-        this.name = name;
-        this.description = desc;
-    }
+	private String name;
+	private String description;
+	
+	public Plant(String name, String description){
+		this.name = name;
+		this.description = description;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public String getDescription(){
+		return description;
+	}
 }
