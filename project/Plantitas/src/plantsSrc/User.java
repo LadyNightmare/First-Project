@@ -33,7 +33,7 @@ public class User {
 	}
 
 	public void logout() {
-		
+
 	}
 
 	public void writePost(Post post) {
