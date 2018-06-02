@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SearchWindow extends JFrame {
-	private int from;
+	private String title = "Search";
+	
+	private int from;	//from which window its called
 	private JPanel contentPane;
 
 	/**
@@ -35,7 +37,7 @@ public class SearchWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public SearchWindow(int from) {
-		setTitle("DataPlant 1.0");
+		setTitle("DataPlant 1.0 - " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SearchWindow.class.getResource("/img/leaf16.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 560, 320);
@@ -58,7 +60,7 @@ public class SearchWindow extends JFrame {
 				}
 				if (from == 1) { // if it comes from the logged window
 					try {
-						UserWindow frame = new UserWindow();
+						UserWindow frame = new UserWindow("");
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception ex) {

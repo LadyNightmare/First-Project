@@ -18,6 +18,9 @@ import plantsSrc.Guest;
 import java.awt.Toolkit;
 
 public class LoginWindow extends JFrame {
+	private String title = "Login";
+	private String user = "default";
+	
 	private JPanel contentPane;
 	private JTextField userField;
 	private JTextField passField;
@@ -40,7 +43,7 @@ public class LoginWindow extends JFrame {
 	 */
 	public LoginWindow() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/img/leaf16.png")));
-		setTitle("DataPlant 1.0");
+		setTitle("DataPlant 1.0 - " + title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 394, 280);
 		contentPane = new JPanel();
@@ -64,34 +67,46 @@ public class LoginWindow extends JFrame {
 				// get entered user and pass
 				String enteredUser = userField.getText();
 				String enteredPass = passField.getText();
-				int res = Guest.login(enteredUser, enteredPass);
 
-				if (res == -1) { // user not found
-
-					JOptionPane.showMessageDialog(null, "Wrong Password / Username");
-				}
-				if (res == 0) { // normal user
-					// create logged window
+				if (enteredUser.length() == 0 || enteredPass.length() == 0) {
+					// error window
 					try {
-						UserWindow frame = new UserWindow();
+						ErrorWindow frame = new ErrorWindow("ERROR: Empty field username/password");
 						frame.setVisible(true);
-						dispose();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				}
-				if (res == 1) { // admin user
-					// create logged window and admin window
-					try {
-						UserWindow frame = new UserWindow();
-						frame.setVisible(true);
-						dispose();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					//admin window
-				}
+				} /*else {
+					user = enteredUser;
+					
+					int res = Guest.login(enteredUser, enteredPass);
 
+					if (res == -1) { // user not found
+						// error window
+					}
+					if (res == 0) { // normal user
+						// create logged window
+						try {
+							UserWindow frame = new UserWindow();
+							frame.setVisible(true);
+							dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					if (res == 1) { // admin user
+						// create logged window and admin window
+						try {
+							UserWindow frame = new UserWindow();
+							frame.setVisible(true);
+							dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+						// admin window
+					}
+
+				}*/
 			}
 		});
 		btnLogin.setBounds(153, 157, 89, 23);
@@ -125,7 +140,7 @@ public class LoginWindow extends JFrame {
 		btnTestLog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					UserWindow frame = new UserWindow();
+					UserWindow frame = new UserWindow(user);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception e) {

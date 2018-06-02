@@ -11,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
-public class GuestWindow extends JFrame {
-	private String title = "Guest";
+public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
 
@@ -24,7 +24,7 @@ public class GuestWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GuestWindow frame = new GuestWindow();
+					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,9 +36,9 @@ public class GuestWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GuestWindow() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GuestWindow.class.getResource("/img/leaf16.png")));
-		setTitle("DataPlant 1.0 - " + title);
+	public MainWindow() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/img/leaf16.png")));
+		setTitle("DataPlant 1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 261);
 		contentPane = new JPanel();
@@ -47,46 +47,48 @@ public class GuestWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnSearchPlant = new JButton("Search plant");
-		btnSearchPlant.setIcon(new ImageIcon(GuestWindow.class.getResource("/img/leaf16.png")));
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					SearchWindow frame = new SearchWindow(0);
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+				SearchWindow frame = new SearchWindow(0);
+				frame.setVisible(true);
 			}
 		});
-		btnSearchPlant.setBounds(131, 95, 163, 23);
+		btnSearchPlant.setBounds(146, 96, 133, 23);
 		contentPane.add(btnSearchPlant);
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					LoginWindow frame = new LoginWindow();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+				LoginWindow frame = new LoginWindow();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnLogin.setBounds(146, 130, 133, 23);
 		contentPane.add(btnLogin);
 
 		JButton btnSign = new JButton("Sign up");
+		btnSign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					SignupWindow frame = new SignupWindow();
+					frame.setVisible(true);
+				} catch (Exception a) {
+					a.printStackTrace();
+				}
+				dispose();
+			}
+		});
 		btnSign.setBounds(146, 164, 133, 23);
 		contentPane.add(btnSign);
 
 		JLabel lblWelcome = new JLabel("Welcome to the most complete plant database!");
-		lblWelcome.setBounds(56, 12, 355, 14);
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setBounds(12, 12, 420, 14);
 		contentPane.add(lblWelcome);
 
 		JLabel logoImg = new JLabel("");
-		logoImg.setIcon(new ImageIcon(GuestWindow.class.getResource("/img/leaf32.png")));
+		logoImg.setIcon(new ImageIcon(MainWindow.class.getResource("/img/leaf32.png")));
 		logoImg.setBounds(196, 44, 35, 39);
 		contentPane.add(logoImg);
 	}

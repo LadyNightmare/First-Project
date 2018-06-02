@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import plantsSrc.User;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,6 +17,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 
 public class UserWindow extends JFrame {
+	private String title = "User zone";
 	/**
 	 * 
 	 */
@@ -27,7 +31,7 @@ public class UserWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserWindow frame = new UserWindow();
+					UserWindow frame = new UserWindow("defUser");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,8 +43,8 @@ public class UserWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserWindow() {
-		setTitle("DataPlant 1.0");
+	public UserWindow(String user) {
+		setTitle("DataPlant 1.0 - " + title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 364, 298);
 		contentPane = new JPanel();
@@ -51,7 +55,6 @@ public class UserWindow extends JFrame {
 		btnLogOut.setBounds(165, 206, 43, 29);
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Guest.logout();
 				try {
 					LoginWindow frame = new LoginWindow();
 					frame.setVisible(true);
@@ -87,7 +90,6 @@ public class UserWindow extends JFrame {
 				try {
 					SearchWindow frame = new SearchWindow(1);
 					frame.setVisible(true);
-					dispose();
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
@@ -98,9 +100,10 @@ public class UserWindow extends JFrame {
 		btnSearch.setBounds(93, 63, 171, 34);
 		contentPane.add(btnSearch);
 		
-		JLabel lblWelcomeBack = new JLabel("Welcome back!");
+		JLabel lblWelcomeBack = new JLabel("Welcome back, " + user + "!");
+		lblWelcomeBack.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeBack.setFont(new Font("Courier 10 Pitch", Font.BOLD | Font.ITALIC, 16));
-		lblWelcomeBack.setBounds(112, 12, 139, 34);
+		lblWelcomeBack.setBounds(12, 12, 340, 34);
 		contentPane.add(lblWelcomeBack);
 	}
 }
