@@ -1,4 +1,4 @@
-
+package plantsSrc;
 public class Plant {
 	private String name;
 	private String description;

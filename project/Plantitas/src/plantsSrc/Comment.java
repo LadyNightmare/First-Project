@@ -1,4 +1,4 @@
-
+package plantsSrc;
 public class Comment {
 	String comment_ID;
 	String comment;

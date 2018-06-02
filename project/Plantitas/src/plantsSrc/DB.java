@@ -55,10 +55,11 @@ public class DB {
 				+ "', '" + id_user + "', '" + plant + "')");
 	}
 
-	public void addComment(String comment_ID, String comment, String user, String post_ID) throws SQLException  {
-			Statement stt = con.createStatement();
-			stt.execute("INSERT INTO comment (Comment_ID, Comment, User, Post_ID) VALUES" + "('" + comment_ID + "', '"
-					+ comment + "', '" + user + "', '" + post_ID + "')");
+	public void addComment(String comment_ID, String comment, String user, String post_ID) throws SQLException {
+		Statement stt = con.createStatement();
+		stt.execute("INSERT INTO comment (Comment_ID, Comment, User, Post_ID) VALUES" + "('" + comment_ID + "', '"
+				+ comment + "', '" + user + "', '" + post_ID + "')");
+	}
 
 	public void deleteUser(String username) throws SQLException {
 		Statement stt = con.createStatement();
