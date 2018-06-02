@@ -1,17 +1,18 @@
 package gui;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
 
-public class ErrorWindow extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class PopupWindow extends JFrame {
+
 	/**
 	 * 
 	 */
@@ -25,7 +26,7 @@ public class ErrorWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ErrorWindow frame = new ErrorWindow("test");
+					PopupWindow frame = new PopupWindow("default");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +38,8 @@ public class ErrorWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ErrorWindow(String msg) {
-		setTitle("ERROR");
+	public PopupWindow(String msg) {
+		setTitle("INFO");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 318, 165);
 		contentPane = new JPanel();
@@ -60,9 +61,10 @@ public class ErrorWindow extends JFrame {
 		btnMsg.setBounds(26, 12, 257, 42);
 		contentPane.add(btnMsg);
 	}
-	
-	public static void pError(String msg) {
+
+	public static void pShow(String msg) {
 		ErrorWindow error = new ErrorWindow(msg);
 		error.setVisible(true);
 	}
+
 }

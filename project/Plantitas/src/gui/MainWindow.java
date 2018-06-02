@@ -15,6 +15,10 @@ import javax.swing.SwingConstants;
 
 public class MainWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -47,13 +51,14 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnSearchPlant = new JButton("Search plant");
+		btnSearchPlant.setIcon(new ImageIcon(MainWindow.class.getResource("/img/leaf16.png")));
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SearchWindow frame = new SearchWindow(0);
 				frame.setVisible(true);
 			}
 		});
-		btnSearchPlant.setBounds(146, 96, 133, 23);
+		btnSearchPlant.setBounds(127, 96, 177, 23);
 		contentPane.add(btnSearchPlant);
 
 		JButton btnLogin = new JButton("Login");
@@ -64,22 +69,23 @@ public class MainWindow extends JFrame {
 				dispose();
 			}
 		});
-		btnLogin.setBounds(146, 130, 133, 23);
+		btnLogin.setBounds(127, 130, 177, 23);
 		contentPane.add(btnLogin);
 
 		JButton btnSign = new JButton("Sign up");
 		btnSign.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					System.out.println("A");
 					SignupWindow frame = new SignupWindow();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception a) {
 					a.printStackTrace();
 				}
-				dispose();
 			}
 		});
-		btnSign.setBounds(146, 164, 133, 23);
+		btnSign.setBounds(127, 164, 177, 23);
 		contentPane.add(btnSign);
 
 		JLabel lblWelcome = new JLabel("Welcome to the most complete plant database!");

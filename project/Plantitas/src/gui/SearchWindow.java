@@ -12,9 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class SearchWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String title = "Search";
 	
-	private int from;	//from which window its called
 	private JPanel contentPane;
 
 	/**

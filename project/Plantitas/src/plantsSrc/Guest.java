@@ -5,12 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 public class Guest {
 
-	private static final long serialVersionUID = 1L;
 	private static DB database = new DB();
 
 	public List<Post> searchPlant(String plant) {
@@ -41,8 +37,8 @@ public class Guest {
 		return admin;
 	}
 
-	public void signUp(String username, String password, String email) {
-		User user = new User(username, password, email, database);
+	public static void signUp(String username, String password, String email) {
+		new User(username, password, email, database);
 	}
 
 }

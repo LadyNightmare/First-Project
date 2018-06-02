@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,16 +7,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import plantsSrc.Guest;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
 
 public class LoginWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String title = "Login";
 	private String user = "default";
 	
@@ -71,8 +73,7 @@ public class LoginWindow extends JFrame {
 				if (enteredUser.length() == 0 || enteredPass.length() == 0) {
 					// error window
 					try {
-						ErrorWindow frame = new ErrorWindow("ERROR: Empty field username/password");
-						frame.setVisible(true);
+						pError("ERROR: Empty field username/password");
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -151,5 +152,9 @@ public class LoginWindow extends JFrame {
 		btnTestLog.setBounds(268, 156, 89, 23);
 		contentPane.add(btnTestLog);
 
+	}
+	
+	private void pError(String msg) {
+		ErrorWindow.pError(msg);
 	}
 }

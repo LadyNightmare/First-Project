@@ -1,10 +1,10 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import plantsSrc.Guest;
@@ -14,11 +14,18 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 public class SignupWindow extends JFrame {
+	Random r = new Random();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String title = "Sign up";
 
 	private JPanel contentPane;
@@ -59,23 +66,23 @@ public class SignupWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception d) {
 					d.printStackTrace();
-				}				
-				dispose();
+				}
 			}
 		});
 		btnBack.setIcon(new ImageIcon(LoginWindow.class.getResource("/img/back.png")));
 		btnBack.setBounds(230, 217, 114, 25);
 		contentPane.add(btnBack);
-		
+
 		JButton btnSignUp = new JButton("Sign up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,63 +90,94 @@ public class SignupWindow extends JFrame {
 				String mail = mailField.getText();
 				String password = passField.getText();
 				String repass = repassField.getText();
-				/*if(Guest.login(username, password) == 0 || Guest.login(username, password) == 1) {
-					//if user already exists
-					ErrorWindow error = new ErrorWindow("User already exists");
-					userField.setText("");
+
+				if (username.length() == 0 || mail.length() == 0 || password.length() == 0 || repass.length() == 0) {
+					// check if there is any null field
+					pError("Please complete all fields!");
+				} else if (isMail(mail)) {
+					// check if email is email
+					pError("Invalid email!");
 					mailField.setText("");
+				} else if (!password.equals(repass)) {
+					// check if passwords match
+					pError("Passwords must match!");
 					passField.setText("");
 					repassField.setText("");
-				}*/
-				
-				//check email
-				
-				if(repass != password) {
-					ErrorWindow error = new ErrorWindow("Passwords don't match");
-					userField.setText("");
-					mailField.setText("");
+				} else if (password.length() < 5) {
+					// check if password is too short
+					pError("Password must be at least 5 characters long!");
 					passField.setText("");
 					repassField.setText("");
+				} else if (username.length() <= 2) {
+					// check if username is too short
+					pError("Username must be at least 3 characters long");
+					userField.setText("");}
+				else if(Guest.login(username, password) == 0 || Guest.login(username, password) == 1) {
+					//check if user already exists
+					pError("User already exists");
+					userField.setText("");
+				} else {
+					//finally make the query
+					int id = r.nextInt(1000);
+					//here we call Guest.signUp() and pass the parameters
+					boolean ok = false;
+					//if the sign up has been succesful
+					
+					if(ok)
+						PopupWindow.pShow("Registration succesful");
+					else {
+						PopupWindow.pShow("Registration succesful");
+						dispose();
 				}
+
 			}
 		});
 		btnSignUp.setBounds(120, 167, 114, 25);
 		contentPane.add(btnSignUp);
-		
+
 		userField = new JTextField();
 		userField.setBounds(193, 25, 124, 19);
 		contentPane.add(userField);
 		userField.setColumns(10);
-		
+
 		mailField = new JTextField();
 		mailField.setColumns(10);
 		mailField.setBounds(193, 56, 124, 19);
 		contentPane.add(mailField);
-		
-		passField = new JTextField();
+
+		passField = new JPasswordField();
 		passField.setColumns(10);
 		passField.setBounds(193, 87, 124, 19);
 		contentPane.add(passField);
-		
-		repassField = new JTextField();
+
+		repassField = new JPasswordField();
 		repassField.setColumns(10);
 		repassField.setBounds(193, 118, 124, 19);
 		contentPane.add(repassField);
-		
+
 		lblUsername = new JLabel("Username");
 		lblUsername.setBounds(35, 25, 129, 15);
 		contentPane.add(lblUsername);
-		
+
 		lblEmail = new JLabel("E-mail");
 		lblEmail.setBounds(35, 56, 129, 15);
 		contentPane.add(lblEmail);
-		
+
 		lblPassword = new JLabel("Password");
 		lblPassword.setBounds(35, 87, 129, 15);
 		contentPane.add(lblPassword);
-		
+
 		lblRepeatPassword = new JLabel("Repeat password");
 		lblRepeatPassword.setBounds(35, 118, 129, 15);
 		contentPane.add(lblRepeatPassword);
 	}
+
+	private boolean isMail(String mail) {
+		return !mail.matches("[a-zA-Z0-9\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9]{3}");
+	}
+
+	private void pError(String msg) {
+		ErrorWindow.pError(msg);
+	}
+
 }

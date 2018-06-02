@@ -1,4 +1,5 @@
 package plantsSrc;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -57,7 +58,8 @@ public class User {
 		try {
 			ResultSet res = database.makeQuery("SELECT * FROM post WHERE plant LIKE '" + plant + "'");
 			while (res.next()) {
-				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
+				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4),
+						res.getString(5)));
 			}
 		} catch (SQLException e) {
 			return plantList;
