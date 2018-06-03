@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-	String ID; 
-	String head;
-	String body;
-	String username;
-	String plant;
-	List<Comment> comments;
+	static String ID; 
+	static String head;
+	static String body;
+	static String username;
+	static String plant;
+	static List<Comment> comments;
 	
 	public Post(String ID,String head,String body,String username, String plant){
 		this.ID=ID;
@@ -19,27 +19,27 @@ public class Post {
 		comments = new ArrayList<>();
 	}
 
-	public List<Comment> getComments() {
+	public static List<Comment> getComments() {
 		return comments;
 	}
 
-	public String getID() {
+	public static  String getID() {
 		return ID;
 	}
 
-	public String getHead() {
+	public static String getHead() {
 		return head;
 	}
 
-	public String getBody() {
+	public static String getBody() {
 		return body;
 	}
 
-	public String getUsername() {
+	public static String getUsername() {
 		return username;
 	}
 
-	public String getPlant() {
+	public static String getPlant() {
 		return plant;
 	}
 }

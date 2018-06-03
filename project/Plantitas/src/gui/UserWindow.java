@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class UserWindow extends JFrame {
 	private String title = "User zone";
@@ -42,6 +43,7 @@ public class UserWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public UserWindow(String user) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UserWindow.class.getResource("/img/leaf16.png")));
 		setTitle("DataPlant 1.0 - " + title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 364, 298);

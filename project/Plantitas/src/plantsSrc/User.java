@@ -9,7 +9,7 @@ public class User {
 	private String username;
 	private String password;
 	private String mail;
-	protected DB database;
+	protected static DB database;
 
 	public User(String username, String password, String mail, DB database) {
 		this.username = username;
@@ -53,7 +53,7 @@ public class User {
 		}
 	}
 
-	public List<Post> searchPlant(String plant) {
+	public static List<Post> searchPlant(String plant) {
 		List<Post> plantList = new ArrayList<>();
 		try {
 			ResultSet res = database.makeQuery("SELECT * FROM post WHERE plant LIKE '" + plant + "'");

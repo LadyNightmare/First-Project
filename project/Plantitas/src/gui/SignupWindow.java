@@ -111,27 +111,32 @@ public class SignupWindow extends JFrame {
 				} else if (username.length() <= 2) {
 					// check if username is too short
 					pError("Username must be at least 3 characters long");
-					userField.setText("");}
-				else if(Guest.login(username, password) == 0 || Guest.login(username, password) == 1) {
-					//check if user already exists
+					userField.setText("");
+				} else if (Guest.login(username, password) == 0 || Guest.login(username, password) == 1) {
+					// check if user already exists
 					pError("User already exists");
 					userField.setText("");
 				} else {
-					//finally make the query
-					int id = r.nextInt(1000);
-					//here we call Guest.signUp() and pass the parameters
-					boolean ok = false;
-					//if the sign up has been succesful
-					
-					if(ok)
-						PopupWindow.pShow("Registration succesful");
-					else {
-						PopupWindow.pShow("Registration succesful");
+					// call the signup method with the entered results
+					// TODO: Make the signip method return true if the registration was succesful
+					if (Guest.signUp(username, password, mail)) {
+						PopupWindow.pShow("Registration succesfull!\nWelcome to the comunity, " + username);
 						dispose();
-				}
+						LoginWindow frame = new LoginWindow();
+						frame.setVisible(true);
+					} else {
+						pError("Registration failed!\nPlease try again");
+						dispose();
+						SignupWindow s = new SignupWindow();
+						s.setVisible(true);
+					}
 
+				}
 			}
-		});
+
+		}
+
+		);
 		btnSignUp.setBounds(120, 167, 114, 25);
 		contentPane.add(btnSignUp);
 

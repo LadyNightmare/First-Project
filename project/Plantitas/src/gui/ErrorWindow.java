@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class ErrorWindow extends JFrame {
 	/**
@@ -38,9 +39,10 @@ public class ErrorWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public ErrorWindow(String msg) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ErrorWindow.class.getResource("/img/error.png")));
 		setTitle("ERROR");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 318, 165);
+		setBounds(100, 100, 318, 146);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,7 +54,7 @@ public class ErrorWindow extends JFrame {
 				dispose();
 			}
 		});
-		btnOk.setBounds(99, 98, 114, 25);
+		btnOk.setBounds(97, 71, 114, 25);
 		contentPane.add(btnOk);
 
 		JLabel btnMsg = new JLabel(msg);

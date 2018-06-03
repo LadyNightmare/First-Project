@@ -37,7 +37,7 @@ public class Guest {
 		return admin;
 	}
 
-	public static void signUp(String username, String password, String email) {
+	public static boolean signUp(String username, String password, String email) {
 		new User(username, password, email, database);
 	}
 
