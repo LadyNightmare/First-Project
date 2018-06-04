@@ -35,7 +35,7 @@ public class PostWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostWindow frame = new PostWindow("0");
+					PostWindow frame = new PostWindow("0", 0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,7 @@ public class PostWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostWindow(String id) {
+	public PostWindow(String id, int logged) {
 		String title = "Post";
 		setTitle("DataPlant 1.0 - " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PostWindow.class.getResource("/img/leaf16.png")));
@@ -58,8 +58,8 @@ public class PostWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		 Post POST = getPost(id);
-		//Post POST = testgetPost(id);
+		Post POST = getPost(id);
+		// Post POST = testgetPost(id);
 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -76,15 +76,29 @@ public class PostWindow extends JFrame {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(12, 0, 493, 27);
 		contentPane.add(label);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(12, 39, 493, 309);
 		contentPane.add(scrollPane);
-		
+
 		JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 		textPane.setEditable(false);
 		textPane.setText(body(POST));
+
+		JButton btnComment = new JButton("Comment");
+		btnComment.setIcon(new ImageIcon(PostWindow.class.getResource("/img/contract.png")));
+		btnComment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (logged == 0) {
+					ErrorWindow.pError("You must be logged in order to comment");
+				} else {
+					CreateCommentWindow frame = new CreateCommentWindow();
+				}
+			}
+		});
+		btnComment.setBounds(176, 361, 145, 23);
+		contentPane.add(btnComment);
 
 	}
 

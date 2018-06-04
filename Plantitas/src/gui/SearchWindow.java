@@ -155,7 +155,7 @@ public class SearchWindow extends JFrame {
 				sc.useDelimiter("[#]");
 				String id = sc.next();
 				
-				PostWindow frame = new PostWindow(id);
+				PostWindow frame = new PostWindow(id, from);
 				frame.setVisible(true);
 				sc.close();
 			}
