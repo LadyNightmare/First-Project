@@ -7,22 +7,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import plantsSrc.Post;
-import plantsSrc.User;
-
 import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class SearchWindow extends JFrame {
 	/**
@@ -55,7 +52,6 @@ public class SearchWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public SearchWindow(int from) {
-		boolean show = false;
 		setTitle("DataPlant 1.0 - " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SearchWindow.class.getResource("/img/leaf16.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,18 +89,21 @@ public class SearchWindow extends JFrame {
 		contentPane.add(btnBack);
 
 		searchField = new JTextField();
-		searchField.setBounds(119, 12, 189, 20);
+		searchField.setBounds(121, 13, 247, 20);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
 
 		JLabel lblPlantName = new JLabel("Plant name:");
-		lblPlantName.setBounds(10, 14, 78, 17);
+		lblPlantName.setBounds(10, 14, 130, 17);
 		contentPane.add(lblPlantName);
 
-		JList<Post> list = new JList<Post>();
-		list.setBounds(22, 53, 501, 165);
-		contentPane.add(list);
-		
+		JScrollPane scroller = new JScrollPane();
+		scroller.setBounds(20, 43, 505, 176);
+		contentPane.add(scroller);
+
+		JList<String> resultslist = new JList<String>();
+		scroller.setViewportView(resultslist);
+
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -115,17 +114,37 @@ public class SearchWindow extends JFrame {
 				else {
 					// build the list
 					// java.util.List<Post> Posts = User.searchPlant(search);
-					java.util.List<Post> Posts = testSearchPlant();
 
+					DefaultListModel<String> DLM = new DefaultListModel<String>();
+
+					List<Post> posts = testSearchPlant();
+					for (int i = 0; i < posts.size(); i++) {
+						String line = posts.get(i).getID() + "#   " + posts.get(i).getHead() + "   / BY: "
+								+ posts.get(i).getUsername();
+						DLM.addElement(line);
+					}
+					resultslist.setModel(DLM);
 				}
 			}
 		});
-		btnSearch.setBounds(362, 11, 89, 23);
+		btnSearch.setBounds(395, 11, 130, 23);
 		contentPane.add(btnSearch);
 
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(506, 53, 17, 165);
-		contentPane.add(scrollBar);
+		JButton btnOpen = new JButton("Open");
+		btnOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String line = resultslist.getSelectedValue();
+				Scanner sc = new Scanner(line);
+				sc.useDelimiter("[#]");
+				String id = sc.next();
+				
+				PostWindow frame = new PostWindow(id);
+				frame.setVisible(true);
+			}
+		});
+		btnOpen.setBounds(197, 231, 89, 23);
+		contentPane.add(btnOpen);
+
 	}
 
 	private void pError(String msg) {
@@ -136,9 +155,11 @@ public class SearchWindow extends JFrame {
 		List<Post> plantList = new ArrayList<>();
 		Post p = new Post("1", "Head1", "Body1", "aguimorefran", "Strawberry");
 		Post p2 = new Post("2", "Head2", "Body2", "mrarm", "Pineapple");
+		Post p3 = new Post("3", "Head3", "Body3", "jd", "Apple");
 
 		plantList.add(p);
 		plantList.add(p2);
+		plantList.add(p3);
 
 		return plantList;
 	}
