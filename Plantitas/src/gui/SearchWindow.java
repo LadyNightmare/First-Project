@@ -1,25 +1,29 @@
 package gui;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import plantsSrc.Post;
 import java.awt.Toolkit;
-import javax.swing.JButton;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import plantsSrc.DB;
+import plantsSrc.Post;
+import plantsSrc.User;
 
 public class SearchWindow extends JFrame {
 	/**
@@ -113,14 +117,27 @@ public class SearchWindow extends JFrame {
 					pError("Please enter the plant name");
 				else {
 					// build the list
-					// java.util.List<Post> Posts = User.searchPlant(search);
+					List<Post> posts = User.searchPlant(search);
 
 					DefaultListModel<String> DLM = new DefaultListModel<String>();
 
-					List<Post> posts = testSearchPlant();
+					//List<Post> posts = testSearchPlant();
 					for (int i = 0; i < posts.size(); i++) {
+						String id = posts.get(i).getUsername();
+						DB db = new DB();
+						ResultSet res;
+						String username = null;
+						try {
+							res = db.makeQuery("SELECT * FROM user WHERE ID ="+id);
+							 while(res.next()){
+								 username=res.getString("Username");
+							 }
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+						
 						String line = posts.get(i).getID() + "#   " + posts.get(i).getHead() + "   / BY: "
-								+ posts.get(i).getUsername();
+								+ username;
 						DLM.addElement(line);
 					}
 					resultslist.setModel(DLM);

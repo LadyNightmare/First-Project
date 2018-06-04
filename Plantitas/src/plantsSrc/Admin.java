@@ -13,7 +13,7 @@ public class Admin extends User {
 	
 	public void writePost(Post post){super.writePost(post);}
 	
-	public List<Plant> searchPlant(String plant){return super.searchPlant(plant);}
+	public static List<Post> searchPlant(String plant){return User.searchPlant(plant);}
 	
 	public void opUser(String username){
 		try {

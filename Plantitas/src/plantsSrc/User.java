@@ -9,13 +9,13 @@ public class User {
 	private String username;
 	private String password;
 	private String mail;
-	protected static DB database;
+	protected static DB database = new DB();
 
 	public User(String username, String password, String mail, DB database) {
 		this.username = username;
 		this.password = password;
 		this.mail = mail;
-		this.database = database;
+		this.database = new DB();
 	}
 
 	public int login(String username, String password) {
@@ -62,6 +62,7 @@ public class User {
 						res.getString(5)));
 			}
 		} catch (SQLException e) {
+			System.out.println("Error searching the plant");
 			return plantList;
 		}
 		return plantList;

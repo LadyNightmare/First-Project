@@ -58,8 +58,8 @@ public class PostWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Post POST = getPost(id);
-		Post POST = testgetPost(id);
+		 Post POST = getPost(id);
+		//Post POST = testgetPost(id);
 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -84,7 +84,7 @@ public class PostWindow extends JFrame {
 		JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 		textPane.setEditable(false);
-		textPane.setText(testbody(POST));
+		textPane.setText(body(POST));
 
 	}
 

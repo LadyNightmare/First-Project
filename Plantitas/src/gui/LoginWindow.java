@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,8 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.EventQueue;
-import java.awt.Toolkit;
+import plantsSrc.Guest;
 
 public class LoginWindow extends JFrame {
 	/**
@@ -77,10 +78,10 @@ public class LoginWindow extends JFrame {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				} /*else {
+				} else {
 					user = enteredUser;
-					
-					int res = Guest.login(enteredUser, enteredPass);
+					Guest guest = new Guest();
+					int res = guest.login(enteredUser, enteredPass);
 
 					if (res == -1) { // user not found
 						// error window
@@ -88,7 +89,7 @@ public class LoginWindow extends JFrame {
 					if (res == 0) { // normal user
 						// create logged window
 						try {
-							UserWindow frame = new UserWindow();
+							UserWindow frame = new UserWindow(enteredUser);
 							frame.setVisible(true);
 							dispose();
 						} catch (Exception e) {
@@ -98,7 +99,7 @@ public class LoginWindow extends JFrame {
 					if (res == 1) { // admin user
 						// create logged window and admin window
 						try {
-							UserWindow frame = new UserWindow();
+							UserWindow frame = new UserWindow(enteredUser);
 							frame.setVisible(true);
 							dispose();
 						} catch (Exception e) {
@@ -107,7 +108,7 @@ public class LoginWindow extends JFrame {
 						// admin window
 					}
 
-				}*/
+				}
 			}
 		});
 		btnLogin.setBounds(153, 157, 89, 23);

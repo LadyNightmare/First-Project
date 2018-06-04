@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Guest {
-	private static DB database = new DB();
+	private DB database = new DB();
 
 	public List<Post> searchPlant(String plant) {
 		List<Post> plantList = new ArrayList<>();
@@ -23,9 +23,9 @@ public class Guest {
 		return plantList;
 	}
 
-	public static int login(String username, String password) {
+	public int login(String username, String password) {
 		// returns -1 if it doesnt exist, 0 if normal user, 1 if admin
-		int admin = 0;
+		int admin = -1;
 		try {
 			ResultSet result = database.makeQuery(
 					"SELECT * FROM user WHERE Username LIKE '" + username + "' AND Password LIKE '" + password + "'");
@@ -38,7 +38,7 @@ public class Guest {
 		return admin;
 	}
 
-	public static boolean signUp(String username, String password, String email) {
+	public boolean signUp(String username, String password, String email) {
 		try {
 			Random r = new Random();
 			database.addUser(Integer.toString(r.nextInt(Integer.MAX_VALUE)), username, password, email, "0");

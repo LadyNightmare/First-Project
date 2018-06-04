@@ -1,23 +1,21 @@
 package gui;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-
-import plantsSrc.Guest;
-
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.Random;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import plantsSrc.Guest;
 
 public class SignupWindow extends JFrame {
 	Random r = new Random();
@@ -86,11 +84,12 @@ public class SignupWindow extends JFrame {
 		JButton btnSignUp = new JButton("Sign up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Guest guest = new Guest();
 				String username = userField.getText();
 				String mail = mailField.getText();
 				String password = passField.getText();
 				String repass = repassField.getText();
-
+					System.out.println(username + password + mail);
 				if (username.length() == 0 || mail.length() == 0 || password.length() == 0 || repass.length() == 0) {
 					// check if there is any null field
 					pError("Please complete all fields!");
@@ -112,14 +111,15 @@ public class SignupWindow extends JFrame {
 					// check if username is too short
 					pError("Username must be at least 3 characters long");
 					userField.setText("");
-				} else if (Guest.login(username, password) == 0 || Guest.login(username, password) == 1) {
+				} else if (guest.login(username, password) == 0 || guest.login(username, password) == 1) {
+					System.out.println(guest.login(username, password));
 					// check if user already exists
 					pError("User already exists");
 					userField.setText("");
 				} else {
 					// call the signup method with the entered results
 					// TODO: Make the signip method return true if the registration was succesful
-					if (Guest.signUp(username, password, mail)) {
+					if (guest.signUp(username, password, mail)) {
 						PopupWindow.pShow("Registration succesfull!\nWelcome to the comunity, " + username);
 						dispose();
 						LoginWindow frame = new LoginWindow();
