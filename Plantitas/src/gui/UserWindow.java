@@ -79,16 +79,6 @@ public class UserWindow extends JFrame {
 		btnPost.setBounds(93, 109, 171, 34);
 		contentPane.add(btnPost);
 		
-		JButton btnComment = new JButton("Add comment");
-		btnComment.setIcon(new ImageIcon(UserWindow.class.getResource("/img/contract.png")));
-		btnComment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnComment.setHorizontalAlignment(SwingConstants.LEFT);
-		btnComment.setBounds(93, 160, 171, 34);
-		contentPane.add(btnComment);
-		
 		JButton btnSearch = new JButton("Search plant");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
