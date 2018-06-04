@@ -37,11 +37,11 @@ public class User {
 
 	}
 
-	public void writePost(Post post) {
+	public static void writePost(Post post) {
 		try {
 			database.addPost(post.ID, post.head, post.body, post.username, post.plant);
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -49,7 +49,7 @@ public class User {
 		try {
 			database.addComment(comment.comment_ID, comment.comment, comment.user, comment.post_ID);
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 		}
 	}
 

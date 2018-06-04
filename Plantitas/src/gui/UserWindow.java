@@ -69,6 +69,11 @@ public class UserWindow extends JFrame {
 		contentPane.add(btnLogOut);
 		
 		JButton btnPost = new JButton("Write new post");
+		btnPost.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnPost.setHorizontalAlignment(SwingConstants.LEFT);
 		btnPost.setIcon(new ImageIcon(UserWindow.class.getResource("/img/contract.png")));
 		btnPost.setBounds(93, 109, 171, 34);
