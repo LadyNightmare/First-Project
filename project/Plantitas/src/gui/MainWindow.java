@@ -1,5 +1,5 @@
 package gui;
-	
+
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
@@ -11,9 +11,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
-public class Main extends JFrame {
+public class MainWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -23,7 +28,7 @@ public class Main extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main frame = new Main();
+					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,8 +40,8 @@ public class Main extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Main() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/img/leaf16.png")));
+	public MainWindow() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/img/leaf16.png")));
 		setTitle("DataPlant 1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 261);
@@ -46,39 +51,50 @@ public class Main extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnSearchPlant = new JButton("Search plant");
+		btnSearchPlant.setIcon(new ImageIcon(MainWindow.class.getResource("/img/leaf16.png")));
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				SearchWindow frame = new SearchWindow(0);
+				frame.setVisible(true);
 			}
 		});
-		btnSearchPlant.setBounds(146, 96, 133, 23);
+		btnSearchPlant.setBounds(127, 96, 177, 23);
 		contentPane.add(btnSearchPlant);
 
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+				LoginWindow frame = new LoginWindow();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
-		btnLogin.setBounds(146, 130, 133, 23);
+		btnLogin.setBounds(127, 130, 177, 23);
 		contentPane.add(btnLogin);
 
 		JButton btnSign = new JButton("Sign up");
-		btnSign.setBounds(146, 164, 133, 23);
+		btnSign.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					System.out.println("A");
+					SignupWindow frame = new SignupWindow();
+					frame.setVisible(true);
+					dispose();
+				} catch (Exception a) {
+					a.printStackTrace();
+				}
+			}
+		});
+		btnSign.setBounds(127, 164, 177, 23);
 		contentPane.add(btnSign);
 
 		JLabel lblWelcome = new JLabel("Welcome to the most complete plant database!");
-		lblWelcome.setBounds(56, 12, 355, 14);
+		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcome.setBounds(12, 12, 420, 14);
 		contentPane.add(lblWelcome);
 
 		JLabel logoImg = new JLabel("");
-		logoImg.setIcon(new ImageIcon(Main.class.getResource("/img/leaf32.png")));
+		logoImg.setIcon(new ImageIcon(MainWindow.class.getResource("/img/leaf32.png")));
 		logoImg.setBounds(196, 44, 35, 39);
 		contentPane.add(logoImg);
 	}

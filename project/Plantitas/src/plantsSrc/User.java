@@ -1,4 +1,5 @@
 package plantsSrc;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ public class User {
 	private String username;
 	private String password;
 	private String mail;
-	protected DB database;
+	protected static DB database;
 
 	public User(String username, String password, String mail, DB database) {
 		this.username = username;
@@ -33,6 +34,7 @@ public class User {
 	}
 
 	public void logout() {
+
 	}
 
 	public void writePost(Post post) {
@@ -51,12 +53,13 @@ public class User {
 		}
 	}
 
-	public List<Post> searchPlant(String plant) {
+	public static List<Post> searchPlant(String plant) {
 		List<Post> plantList = new ArrayList<>();
 		try {
 			ResultSet res = database.makeQuery("SELECT * FROM post WHERE plant LIKE '" + plant + "'");
 			while (res.next()) {
-				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
+				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4),
+						res.getString(5)));
 			}
 		} catch (SQLException e) {
 			return plantList;

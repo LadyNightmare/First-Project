@@ -13,6 +13,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class GuestWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String title = "Guest";
 
 	private JPanel contentPane;
 
@@ -37,7 +43,7 @@ public class GuestWindow extends JFrame {
 	 */
 	public GuestWindow() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GuestWindow.class.getResource("/img/leaf16.png")));
-		setTitle("DataPlant 1.0");
+		setTitle("DataPlant 1.0 - " + title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 261);
 		contentPane = new JPanel();
@@ -50,7 +56,7 @@ public class GuestWindow extends JFrame {
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					SearchWindow frame = new SearchWindow();
+					SearchWindow frame = new SearchWindow(0);
 					frame.setVisible(true);
 					dispose();
 				} catch (Exception ex) {

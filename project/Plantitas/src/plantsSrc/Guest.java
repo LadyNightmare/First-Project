@@ -4,13 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.util.Random;
 
 public class Guest {
-
-	private static final long serialVersionUID = 1L;
 	private static DB database = new DB();
 
 	public List<Post> searchPlant(String plant) {
@@ -18,7 +14,8 @@ public class Guest {
 		try {
 			ResultSet res = database.makeQuery("SELECT * FROM post WHERE plant LIKE '" + plant + "'");
 			while (res.next()) {
-				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5)));
+				plantList.add(new Post(res.getString(1), res.getString(2), res.getString(3), res.getString(4),
+						res.getString(5)));
 			}
 		} catch (SQLException e) {
 			return plantList;
@@ -41,8 +38,14 @@ public class Guest {
 		return admin;
 	}
 
-	public void signUp(String username, String password, String email) {
-		User user = new User(username, password, email, database);
+	public static boolean signUp(String username, String password, String email) {
+		try {
+			Random r = new Random();
+			database.addUser(Integer.toString(r.nextInt(Integer.MAX_VALUE)), username, password, email, "0");
+		} catch (SQLException e) {
+			return false;
+		}
+		return true;
 	}
 
 }

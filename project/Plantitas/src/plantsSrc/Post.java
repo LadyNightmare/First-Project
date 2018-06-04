@@ -1,21 +1,22 @@
 package plantsSrc;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-	String ID; 
-	String head;
-	String body;
-	String username;
-	String plant;
-	List<Comment> comments;
-	
-	public Post(String ID,String head,String body,String username, String plant){
-		this.ID=ID;
-		this.head=head;
-		this.body=body;
-		this.username=username;
-		this.plant=plant;
+	 String ID;
+	 String head;
+	 String body;
+	 String username;
+	 String plant;
+	 List<Comment> comments;
+
+	public Post(String ID, String head, String body, String username, String plant) {
+		this.ID = ID;
+		this.head = head;
+		this.body = body;
+		this.username = username;
+		this.plant = plant;
 		comments = new ArrayList<>();
 	}
 
@@ -23,7 +24,7 @@ public class Post {
 		return comments;
 	}
 
-	public String getID() {
+	public  String getID() {
 		return ID;
 	}
 
@@ -31,15 +32,15 @@ public class Post {
 		return head;
 	}
 
-	public String getBody() {
+	public  String getBody() {
 		return body;
 	}
 
-	public String getUsername() {
+	public  String getUsername() {
 		return username;
 	}
 
-	public String getPlant() {
+	public  String getPlant() {
 		return plant;
 	}
 }
