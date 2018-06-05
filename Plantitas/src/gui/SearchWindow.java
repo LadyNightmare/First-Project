@@ -43,7 +43,7 @@ public class SearchWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SearchWindow frame = new SearchWindow(0);
+					SearchWindow frame = new SearchWindow(0, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class SearchWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SearchWindow(int from) {
+	public SearchWindow(int from, User loggedin) {
 		setTitle("DataPlant 1.0 - " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SearchWindow.class.getResource("/img/leaf16.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +79,7 @@ public class SearchWindow extends JFrame {
 				}
 				if (from == 1) { // if it comes from the logged window
 					try {
-						UserWindow frame = new UserWindow("");
+						UserWindow frame = new UserWindow(loggedin);
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception ex) {
@@ -121,23 +121,22 @@ public class SearchWindow extends JFrame {
 
 					DefaultListModel<String> DLM = new DefaultListModel<String>();
 
-					//List<Post> posts = testSearchPlant();
+					// List<Post> posts = testSearchPlant();
 					for (int i = 0; i < posts.size(); i++) {
 						String id = posts.get(i).getUsername();
 						DB db = new DB();
 						ResultSet res;
 						String username = null;
 						try {
-							res = db.makeQuery("SELECT * FROM user WHERE ID ="+id);
-							 while(res.next()){
-								 username=res.getString("Username");
-							 }
+							res = db.makeQuery("SELECT * FROM user WHERE ID =" + id);
+							while (res.next()) {
+								username = res.getString("Username");
+							}
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}
-						
-						String line = posts.get(i).getID() + "#   " + posts.get(i).getHead() + "   / BY: "
-								+ username;
+
+						String line = posts.get(i).getID() + "#   " + posts.get(i).getHead() + "   / BY: " + username;
 						DLM.addElement(line);
 					}
 					resultslist.setModel(DLM);
@@ -154,8 +153,8 @@ public class SearchWindow extends JFrame {
 				Scanner sc = new Scanner(line);
 				sc.useDelimiter("[#]");
 				String id = sc.next();
-				
-				PostWindow frame = new PostWindow(id, from);
+
+				PostWindow frame = new PostWindow(id, from, loggedin);
 				frame.setVisible(true);
 				sc.close();
 			}

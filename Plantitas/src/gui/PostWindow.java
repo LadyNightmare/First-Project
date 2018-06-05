@@ -20,10 +20,17 @@ import javax.swing.border.EmptyBorder;
 import plantsSrc.Comment;
 import plantsSrc.DB;
 import plantsSrc.Post;
+import plantsSrc.User;
+
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
 public class PostWindow extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	DB database = new DB();
 
 	private JPanel contentPane;
@@ -35,7 +42,7 @@ public class PostWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostWindow frame = new PostWindow("0", 0);
+					PostWindow frame = new PostWindow("0", 0, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +54,7 @@ public class PostWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostWindow(String id, int logged) {
+	public PostWindow(String id, int logged, User loggedin) {
 		String title = "Post";
 		setTitle("DataPlant 1.0 - " + title);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PostWindow.class.getResource("/img/leaf16.png")));
@@ -93,7 +100,7 @@ public class PostWindow extends JFrame {
 				if (logged == 0) {
 					ErrorWindow.pError("You must be logged in order to comment");
 				} else {
-					CreateCommentWindow frame = new CreateCommentWindow();
+					CreateCommentWindow frame = new CreateCommentWindow(POST, loggedin);
 				}
 			}
 		});

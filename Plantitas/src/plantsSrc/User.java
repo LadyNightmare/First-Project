@@ -17,6 +17,10 @@ public class User {
 		this.mail = mail;
 		this.database = new DB();
 	}
+	
+	public String getUsername() {
+		return username;
+	}
 
 	public int login(String username, String password) {
 		// returns -1 if it doesnt exist, 0 if normal user, 1 if admin
