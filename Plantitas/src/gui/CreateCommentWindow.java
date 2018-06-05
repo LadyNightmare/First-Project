@@ -93,6 +93,7 @@ public class CreateCommentWindow extends JFrame {
 				PopupWindow.pShow("Comment created succesfully!");
 				dispose();
 				PostWindow newpost = new PostWindow(POST.getID(), 1, loggedin);
+				newpost.setVisible(true);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon(CreateCommentWindow.class.getResource("/img/contract.png")));

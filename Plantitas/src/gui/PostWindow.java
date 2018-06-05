@@ -101,6 +101,7 @@ public class PostWindow extends JFrame {
 					ErrorWindow.pError("You must be logged in order to comment");
 				} else {
 					CreateCommentWindow frame = new CreateCommentWindow(POST, loggedin);
+					frame.setVisible(true);
 				}
 			}
 		});
@@ -156,8 +157,12 @@ public class PostWindow extends JFrame {
 		sb.append(POST.getBody() + "\n");
 		sb.append("---------------------------------\n");
 		sb.append("COMMENTS: ");
-
+		String username=null;
+		DB db = new DB();
+		ResultSet res;
 		for (Comment c : comments) {
+			
+			
 			sb.append("---------------------------------\n");
 			sb.append("#" + c.getComment_ID() + " " + c.getUser() + "\n");
 			sb.append(c.getComment() + "\n");
