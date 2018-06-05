@@ -54,7 +54,7 @@ public class MainWindow extends JFrame {
 		btnSearchPlant.setIcon(new ImageIcon(MainWindow.class.getResource("/img/leaf16.png")));
 		btnSearchPlant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchWindow frame = new SearchWindow(0);
+				SearchWindow frame = new SearchWindow(0, null);
 				frame.setVisible(true);
 			}
 		});

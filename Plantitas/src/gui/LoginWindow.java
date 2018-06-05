@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import plantsSrc.Guest;
+import plantsSrc.User;
 
 public class LoginWindow extends JFrame {
 	/**
@@ -22,8 +23,6 @@ public class LoginWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String title = "Login";
-	private String user = "default";
-	
 	private JPanel contentPane;
 	private JTextField userField;
 	private JTextField passField;
@@ -70,6 +69,8 @@ public class LoginWindow extends JFrame {
 				// get entered user and pass
 				String enteredUser = userField.getText();
 				String enteredPass = passField.getText();
+				
+				User usuario = new User(enteredUser, enteredPass, null, null);
 
 				if (enteredUser.length() == 0 || enteredPass.length() == 0) {
 					// error window
@@ -79,7 +80,6 @@ public class LoginWindow extends JFrame {
 						e.printStackTrace();
 					}
 				} else {
-					user = enteredUser;
 					Guest guest = new Guest();
 					int res = guest.login(enteredUser, enteredPass);
 
@@ -89,7 +89,7 @@ public class LoginWindow extends JFrame {
 					if (res == 0) { // normal user
 						// create logged window
 						try {
-							UserWindow frame = new UserWindow(enteredUser);
+							UserWindow frame = new UserWindow(usuario);
 							frame.setVisible(true);
 							dispose();
 						} catch (Exception e) {
@@ -99,8 +99,10 @@ public class LoginWindow extends JFrame {
 					if (res == 1) { // admin user
 						// create logged window and admin window
 						try {
-							UserWindow frame = new UserWindow(enteredUser);
+							UserWindow frame = new UserWindow(usuario);
 							frame.setVisible(true);
+							AdminWindow admin = new AdminWindow(usuario);
+							admin.setVisible(true);
 							dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -142,8 +144,10 @@ public class LoginWindow extends JFrame {
 		btnTestLog.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					UserWindow frame = new UserWindow(user);
+					UserWindow frame = new UserWindow(null);
 					frame.setVisible(true);
+					AdminWindow admin = new AdminWindow(null);
+					admin.setVisible(true);
 					dispose();
 				} catch (Exception e) {
 					e.printStackTrace();

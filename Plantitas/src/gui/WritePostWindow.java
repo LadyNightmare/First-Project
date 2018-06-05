@@ -1,9 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class WritePostWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField titleField;
 	private JTextField plantField;
@@ -35,7 +36,7 @@ public class WritePostWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WritePostWindow frame = new WritePostWindow("default");
+					WritePostWindow frame = new WritePostWindow(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class WritePostWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WritePostWindow(String user) {
+	public WritePostWindow(User loggedin) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WritePostWindow.class.getResource("/img/leaf16.png")));
 		setTitle("DataPlant 1.0 - Write post");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +70,7 @@ public class WritePostWindow extends JFrame {
 
 		plantField = new JTextField();
 		plantField.setColumns(10);
-		plantField.setBounds(437, 12, 124, 19);
+		plantField.setBounds(437, 12, 160, 19);
 		contentPane.add(plantField);
 
 		JLabel lblTitle = new JLabel("TITLE:");
@@ -96,12 +97,14 @@ public class WritePostWindow extends JFrame {
 				String body = postPane.getText();
 				String plant = plantField.getText();
 
-				Post post = new Post(id, head, body, user, plant);
+				Post post = new Post(id, head, body, loggedin.getUsername(), plant);
 
-				User.writePost(post);
-				
+				loggedin.writePost(post);
+
 				PopupWindow.pShow("Post created succesfully!");
 				dispose();
+				PostWindow newpost = new PostWindow(id, 1, loggedin);
+
 			}
 		});
 		btnPost.setBounds(357, 261, 114, 25);

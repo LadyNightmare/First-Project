@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-	 String ID;
-	 String head;
-	 String body;
-	 String username;
-	 String plant;
-	 List<Comment> comments;
+	String ID;
+	String head;
+	String body;
+	String username;
+	String plant;
+	List<Comment> comments;
 
 	public Post(String ID, String head, String body, String username, String plant) {
 		this.ID = ID;
@@ -24,7 +24,7 @@ public class Post {
 		return comments;
 	}
 
-	public  String getID() {
+	public String getID() {
 		return ID;
 	}
 
@@ -32,15 +32,15 @@ public class Post {
 		return head;
 	}
 
-	public  String getBody() {
+	public String getBody() {
 		return body;
 	}
 
-	public  String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 
-	public  String getPlant() {
+	public String getPlant() {
 		return plant;
 	}
 }
