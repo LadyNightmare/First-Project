@@ -1,9 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class WritePostWindow extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField titleField;
 	private JTextField plantField;
@@ -98,7 +99,7 @@ public class WritePostWindow extends JFrame {
 
 				Post post = new Post(id, head, body, loggedin.getUsername(), plant);
 
-				User.writePost(post);
+				loggedin.writePost(post);
 
 				PopupWindow.pShow("Post created succesfully!");
 				dispose();

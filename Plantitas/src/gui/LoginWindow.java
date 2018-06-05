@@ -101,6 +101,8 @@ public class LoginWindow extends JFrame {
 						try {
 							UserWindow frame = new UserWindow(usuario);
 							frame.setVisible(true);
+							AdminWindow admin = new AdminWindow(usuario);
+							admin.setVisible(true);
 							dispose();
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -144,6 +146,8 @@ public class LoginWindow extends JFrame {
 				try {
 					UserWindow frame = new UserWindow(null);
 					frame.setVisible(true);
+					AdminWindow admin = new AdminWindow(null);
+					admin.setVisible(true);
 					dispose();
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -41,7 +41,7 @@ public class User {
 
 	}
 
-	public static void writePost(Post post) {
+	public void writePost(Post post) {
 		try {
 			database.addPost(post.ID, post.head, post.body, post.username, post.plant);
 		} catch (SQLException e) {
